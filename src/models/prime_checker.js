@@ -8,10 +8,11 @@ PrimeChecker.prototype.bindEvents = function () {
   // needs to listen to the pubsub for the number that's coming in, and then run that nuber through the numberIsPrime function below.
   PubSub.subscribe("FormView:number-submitted", (event) => {
     const inputNumber = event.detail;
+    console.log("inputNumber:", inputNumber);
 
     const result = this.numberIsPrime(inputNumber);
     // there's no ppublish yet, so to test, just log the result.
-    console.log(result);
+    console.log("number is prime?", result);
   });
 
 
@@ -29,4 +30,4 @@ PrimeChecker.prototype.numberIsPrime = function (number) {
   return true;
 };
 
-module.exports = PubSub;
+module.exports = PrimeChecker;

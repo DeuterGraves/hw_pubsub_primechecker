@@ -1,13 +1,15 @@
 const PubSub = require("../helpers/pub_sub.js");
 
 const PrimeChecker = function(){
-
+// could do the the bind events in the constructor but that's not really whata constructor is for - we're reaching outside our class to talk to the document etc.
+// constructor is more for holding data about the object created by the constructor.
 };
 
+// binding the action to an event that happens i.e the event triggers the action...
 PrimeChecker.prototype.bindEvents = function () {
   // needs to listen to the pubsub for the number that's coming in, and then run that nuber through the numberIsPrime function below.
-  PubSub.subscribe("FormView:number-submitted", (event) => {
-    const inputNumber = event.detail;
+  PubSub.subscribe("FormView:number-submitted", (numberSubmittedEvent) => {
+    const inputNumber = numberSubmittedEvent.detail;
     // console.log("inputNumber:", inputNumber);
 
     const result = this.numberIsPrime(inputNumber);
